@@ -1,0 +1,54 @@
+---
+- hosts: localhost
+
+  vars_files:
+    - config.yml
+
+  roles:
+    - role: elliotweiser.osx-command-line-tools
+      tags: ['xcode']	
+    - role: geerlingguy.mac.homebrew
+      tags: ['homebrew']
+  tasks:
+    - name: Determine if this is a VM
+      ansible.builtin.command: "ioreg -l | head -3 | grep -q 'VMAPPLE'"
+      register: vm_check
+      tags: ['security']
+    - name: Set fact about whether this is a VM
+      ansible.builtin.set_fact: 
+        is_vm: "{{ vm_check.rc }} == 0"
+      tags: ['security']
+
+    
+    
+    - name: Set hostname
+      ansible.builtin.hostname:
+        name: "{{ new_hostname }}.stankybean.com"
+        use: macos
+      when: new_hostname is defined
+      tags: ['hostname']
+
+
+    - import_tasks: tasks/config_files.yml
+      tags: ['config_files']
+    - import_tasks: tasks/shell.yml
+      tags: ['shell']
+    - import_tasks: tasks/dock.yml
+      tags: ['dock']
+    - import_tasks: tasks/security.yml
+      tags: ['security']
+
+    - include_tasks: 
+        file: tasks/defaults-domain.yml
+        apply:
+          tags:
+            - macosdefaults
+      loop: "{{ macos_defaults }}"
+      loop_control:
+        loop_var: domain
+      tags: ['macosdefaults']
+
+    - import_tasks: tasks/firefox.yml
+      tags: ['browser', 'firefox']
+    - import_tasks: tasks/chrome.yml
+      tags: ['browser', 'chrome']

@@ -1,0 +1,16 @@
+---
+
+# outer loop
+
+- name: "Set macOS defaults for {{ domain.domain_name }}'s keys."
+  include_tasks:
+    file: tasks/defaults-key.yml
+    apply:
+      tags:
+        - macosdefaults
+  loop: "{{ domain.settings }}"
+
+- name: "Kill {{ domain.killall }}."
+  ansible.builtin.command: "killall {{ domain.killall }}"
+  failed_when: false
+  changed_when: false

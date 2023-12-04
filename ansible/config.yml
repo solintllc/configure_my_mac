@@ -1,0 +1,280 @@
+my_config_repo: "git@github.com:solintllc/configure_my_mac.git"
+my_config_dir: "{{ ansible_user_dir }}/.configure_my_mac/config_files"
+
+homebrew_installed_packages:
+  - awscli
+  - bash
+  - blueutil
+  - findutils
+  - htop
+  - jq
+  - neovim
+  - nmap
+  - tree
+  - watch
+  - wget
+
+homebrew_cask_apps:
+  - 1password
+  - 1password-cli
+  - alfred
+  - bettertouchtool
+  - blockblock
+  - docker
+  - dropbox
+  - duet
+  - evernote
+  - firefox
+  - forklift
+  - google-chrome
+  - handbrake
+  - iterm2
+  - itsycal
+  - karabiner-elements
+  - knockknock
+  - little-snitch
+  - malwarebytes
+  - nordvpn
+  - omnigraffle
+  - parallels
+  - renamer
+  - signal
+  - skype
+  - slack
+  - vlc
+  - wireshark
+  - xbar
+  - zoom
+
+dockitems_apps:
+  - name: "1Password"
+    path: "/Applications/1Password.app/"
+  - name: "Firefox"
+    path: "/Applications/Firefox.app/"
+  - name: "Chrome"
+    path: "/Applications/Google Chrome.app/"
+  - name: "iTerm2"
+    path: "/Applications/iTerm.app/"
+  - name: "System Preferences"
+    path: "/System/Applications/System Preferences.app/"
+  - name: "BTT"
+    path: "/Applications/BetterTouchTool.app/"
+
+dockitems_folders:
+  - name: "Home"
+    path: "~/"
+    sort: "name"
+  - name: "Documents"
+    path: "~/Documents"
+    sort: "name"
+  - name: "Downloads"
+    path: "~/Downloads"
+    sort: "dateadded"
+
+# lots of useful ones here: https://github.com/kevinSuttle/macOS-Defaults/blob/master/.macos
+macos_defaults:
+   - domain_name: com.apple.dock
+     killall: Dock
+     settings:
+     - description: Set dock size
+       key: tilesize
+       type: float
+       value: 48
+       become: false
+     - description: Set dock to left
+       key: orientation
+       type: string
+       value: left
+       become: false
+     - description: Set dock recents off
+       key: show-recents
+       type: bool
+       value: false
+       become: false
+     - description: Do not automatically rearrange Spaces based on most recent use
+       key: mru-spaces
+       type: bool
+       value: false
+       become: false
+     - description: Do not switch Spaces based on app
+       key: workspaces-auto-swoosh
+       type: bool
+       value: false
+       become: false
+     - description: Do not switch Spaces based on app. Not totally sure how different.
+       key: AppleSpacesSwitchOnActivate
+       type: bool
+       value: false
+       become: false
+   - domain_name: com.apple.safari
+     killall: Dock
+     settings:
+     - description: Show full URL in Safari
+       key: ShowFullURLInSmartSearchField
+       type: bool
+       value: true
+       become: false
+   - domain_name: com.apple.finder
+     killall: Finder
+     settings:
+       - description: Add Quit to Finder
+         key: QuitMenuItem
+         type: bool
+         value: true
+         become: false
+       - description: Show file extensions in Finder
+         key: AppleShowAllExtensions
+         type: bool
+         value: true
+         become: false
+       - description: Show pathbar in Finder
+         key: ShowPathbar
+         type: bool
+         value: true
+         become: false
+       - description: Set default search scope to current folder
+         key: FXDefaultSearchScope
+         type: string
+         value: SCcf
+         become: false
+       - description: Turn off file extension change warning
+         key: FXEnableExtensionChangeWarning
+         type: bool
+         value: false
+         become: false
+       - description: Sort folder first
+         key: _FXSortFoldersFirst
+         type: bool
+         value: true
+         become: false
+       - description: Show all files
+         key: AppleShowAllFiles
+         type: bool
+         value: true
+         become: false
+   - domain_name: com.apple.loginwindow
+     killall: noop
+     settings:
+       - description: Do not save state on system logout
+         key: TALLogoutSavesState
+         type: bool
+         value: false
+         become: false
+       - description: Do not reopen on login
+         key: LoginwindowLaunchesRelaunchApps
+         type: bool
+         value: false
+         become: false
+   - domain_name: com.apple.TextEdit
+     killall: TextEdit
+     settings:
+       - description: Default to plain text in Text Editor
+         key: RichText
+         type: int
+         value: 0
+         become: false
+       - description: Save UTF-8
+         key: PlainTextEncoding
+         type: int
+         value: 4
+         become: false
+       - description: Save UTF-8
+         key: PlainTextEncodingForWrite
+         type: int
+         value: 4
+         become: false
+   - domain_name: com.apple.LaunchServices
+     killall: noop
+     settings:
+       - description: Do no show Application Downloaded from Internet warning
+         key: LSQuarantine
+         type: bool
+         value: false
+         become: false
+   - domain_name: com.apple.menuextra.clock
+     killall: noop
+     settings:
+       - description: Turn clock into a button so I can use itsycal. Would be great to remove, but it is notification center button.
+         key: IsAnalog
+         type: bool
+         value: true
+         become: false
+   - domain_name: NSGlobalDomain
+     killall: noop
+     settings:
+       - description: Disable automatic capitalization
+         key: NSAutomaticCapitalizationEnabled
+         type: bool
+         value: false
+         become: false
+       - description: Disable automatic dash substitution
+         key: NSAutomaticDashSubstitutionEnabled
+         type: bool
+         value: false
+         become: false
+       - description: Disable automatic period substitution
+         key: NSAutomaticPeriodSubstitutionEnabled
+         type: bool
+         value: false
+         become: false
+       - description: Disable automatic smart quotes
+         key: NSAutomaticQuoteSubstitutionEnabled
+         type: bool
+         value: false
+         become: false
+       - description: Prevent saving of windows on quit
+         key: NSQuitAlwaysKeepsWindows
+         type: bool
+         value: false
+         become: false
+       - description: Hold down a key and get multiple letters
+         key: ApplePressAndHoldEnabled
+         type: bool
+         value: false
+         become: false
+       - description: Repeat fast
+         key: KeyRepeat
+         type: int
+         value: 1
+         become: false
+       - description: Always show scroll bars
+         key: AppleShowScrollBars
+         type: string
+         value: "Always"
+         become: false
+       - description: Expand save dialogs by default
+         key: NSNavPanelExpandedStateForSaveMode
+         type: bool
+         value: true
+         become: false
+       - description: Expand save dialogs by default
+         key: NSNavPanelExpandedStateForSaveMode2
+         type: bool
+         value: true
+         become: false
+       - description: Expand print dialogs by default
+         key: PMPritingExpandedStateForPrint
+         type: bool
+         value: true
+         become: false
+       - description: Expand print dialogs by default
+         key: PMPrintingExpandedStateForPrint2
+         type: bool
+         value: true
+         become: false
+
+
+# instructions here https://developer.chrome.com/docs/extensions/mv3/external_extensions/#preferences
+# basically
+# 1. go to the chrome extension store: https://chrome.google.com/webstore/category/extensions
+# 2. find the extension
+# 3. copy the last part of the URL to get the id
+# 4. the name below doesn't matter. that's just to help me.
+chrome_extensions_dir: "{{ ansible_user_dir }}/Library/Application Support/Google/Chrome/External Extensions"
+chrome_extensions:
+  - name: 1Password
+    id: aeblfdkhhhdcdjpifhhbdiojplfjncoa
+  - name: Ghostery
+    id: mlomiejdfkolichcflejclcbmpeaniij
+  - name: uBlock Origin
+    id: cjpalhdlnbpafiamejdnhcphjbkeiagm

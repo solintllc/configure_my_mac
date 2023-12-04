@@ -1,0 +1,17 @@
+---
+
+  - name: Create Chrome extensions directory
+    ansible.builtin.file: 
+      path: "{{ chrome_extensions_dir }}"
+      state: directory
+      recurse: yes
+      
+
+  - name: "Install Chrome extensions."
+    vars:
+      file_content:
+        external_update_url: "https://clients2.google.com/service/update2/crx"
+    copy:
+      dest: "{{ chrome_extensions_dir }}/{{ item.id }}.json"
+      content: "{{ file_content | to_json }}"
+    loop: "{{ chrome_extensions }}"

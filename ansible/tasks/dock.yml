@@ -1,0 +1,22 @@
+---
+# See: https://github.com/kcrawford/dockutil/issues/127
+- name: Install dockutil.
+  community.general.homebrew_cask:
+    name: hpedrorodrigues/tools/dockutil
+    state: present
+  tags: ['dock']
+
+- name: Remove all dock items
+  ansible.builtin.command: "dockutil --remove all --no-restart"
+  tags: ['dock']
+
+- name: Add apps to dock.
+  ansible.builtin.command: "dockutil --add '{{ item.path }}' --label '{{ item.name }}' --no-restart"
+  loop: "{{ dockitems_apps }}"
+  tags: ['dock']
+
+- name: Add folders to dock.
+  ansible.builtin.command: "dockutil --add '{{ item.path }}' --label '{{ item.name }}' --sort '{{item.sort }}'"
+  loop: "{{ dockitems_folders }}"
+  tags: ['dock']
+

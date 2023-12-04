@@ -1,0 +1,8 @@
+---
+
+   - name: Install my repo of config files
+     git:
+       repo: "{{ my_config_repo }}"
+       dest: "{{ my_config_dir }}"
+       clone: yes
+       update: yes

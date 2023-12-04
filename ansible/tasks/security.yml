@@ -1,0 +1,9 @@
+---
+
+- name: Verify FileVault
+  ansible.builtin.command: "diskutil apfs listUsers /"
+  register: filevault
+  failed_when: "'Type: iCloud Recovery User' not in filevault.stdout"
+  when: not is_vm
+  tags: ['security']
+  

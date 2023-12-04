@@ -1,0 +1,4 @@
+---
+
+- name: Set Firefox as the default browser
+  ansible.builtin.shell: /Applications/Firefox.app/Contents/MacOS/firefox --setDefaultBrowser

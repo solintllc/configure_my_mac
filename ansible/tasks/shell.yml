@@ -1,0 +1,14 @@
+---
+
+- name: Add homebrew bash to list of acceptable shells
+  become: yes
+  ansible.builtin.lineinfile:
+    path: /etc/shells
+    line: /opt/homebrew/bin/bash
+    state: present
+
+- name: Change my users default shell to bash from homebrew
+  become: yes
+  ansible.builtin.user:
+    name: "{{ ansible_user_id }}"
+    shell: /opt/homebrew/bin/bash

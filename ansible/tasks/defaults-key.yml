@@ -1,0 +1,11 @@
+---
+
+# inner loop
+
+- name: "{{ item.description }}"
+  become: "{{ item.become }}"
+  community.general.osx_defaults:
+    domain: "{{ domain.domain_name }}"
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
