@@ -81,7 +81,14 @@ cd ~/.configure_my_mac/ansible;
 App Store
 - Brother iPrint&Scan
 - Day One Journal
+- Good Notes
 - Harvest
+- Microsoft To Do
+- Parallels
+
+### Privacy and Security
+System Setttings → Privacy & Security
+
 
 ### Firefox
 - sign in

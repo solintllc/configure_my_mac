@@ -39,7 +39,6 @@ homebrew_cask_apps:
   - little-snitch
   - malwarebytes
   - microsoft-teams
-  - parallels
   - renamer
   - signal
   - slack
