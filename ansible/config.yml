@@ -2,10 +2,12 @@ my_config_repo: "git@github.com:solintllc/configure_my_mac.git"
 my_config_dir: "{{ ansible_user_dir }}/.configure_my_mac/config_files"
 
 homebrew_installed_packages:
+  - appcleaner
   - awscli
   - bash
   - blueutil
   - findutils
+  - git-flow
   - htop
   - jq
   - neovim
@@ -14,18 +16,20 @@ homebrew_installed_packages:
   - watch
   - wget
 
+
+# from https://formulae.brew.sh/cask/
 homebrew_cask_apps:
   - 1password
   - 1password-cli
   - alfred
   - bettertouchtool
   - blockblock
+  - displaylink
   - docker
   - dropbox
   - duet
-  - evernote
+  - expressvpn
   - firefox
-  - forklift
   - google-chrome
   - handbrake
   - iterm2
@@ -34,16 +38,14 @@ homebrew_cask_apps:
   - knockknock
   - little-snitch
   - malwarebytes
-  - nordvpn
-  - omnigraffle
+  - microsoft-teams
   - parallels
   - renamer
   - signal
-  - skype
   - slack
+  - visual-studio-code
   - vlc
   - wireshark
-  - xbar
   - zoom
 
 dockitems_apps:

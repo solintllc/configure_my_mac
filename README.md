@@ -57,26 +57,31 @@ The ansible playbooks draw heavily from [Jeff Geerling's work](https://github.co
 ```
 xcode-select --install;
 sudo pip3 install --upgrade pip;
-export PATH="$HOME/Library/Python/3.9/bin:/opt/homebrew/bin:$PATH";
 pip3 install ansible;
 ```
 
 ### 2. Install this repository
 ```
-git clone git@github.com:solintllc/configure_my_mac.git ~/.configure_my_mac
-cd ~/.configure_my_mac
-ansible-galaxy install -r requirements.yml
+git clone https://github.com/solintllc/configure_my_mac.git ~/.configure_my_mac;
+cd ~/.configure_my_mac;
+git checkout develop; # only if you are doing this on a dev machine
+~/Library/Python/3.9/bin/ansible-galaxy install -r ansible/requirements.yml;
 ```
 
-### Run Configuration
+### 3. Run Ansible Configuration
 ```
-ssh-add --apple-load-keychain
-cd ~/.config/configure-mac;
-export PATH="$HOME/Library/Python/3.9/bin:/opt/homebrew/bin:$PATH";
-ansible-playlist main.yml --ask-become-pass --tags "[]:"
+cd ~/.configure_my_mac/ansible;
+~/Library/Python/3.9/bin/ansible-playbook main.yml --ask-become-pass --tags "all"
 ```
 
 ## Manual steps
+
+### Other Applications
+
+App Store
+- Brother iPrint&Scan
+- Day One Journal
+- Harvest
 
 ### Firefox
 - sign in
